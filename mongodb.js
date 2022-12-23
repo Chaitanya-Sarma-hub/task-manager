@@ -66,15 +66,27 @@ async function main() {
   //   const user = await collection.find({ age: 19 }).toArray();
   //   console.log(...user);
 
-  let task = await collection.findOne({
-    _id: ObjectId("63a00dd7a091e696a0651392"),
-  });
-  console.log(task);
+  //   let task = await collection.findOne({
+  //     _id: ObjectId("63a00dd7a091e696a0651392"),
+  //   });
+  //   console.log(task);
 
-  task = await collection.find({ completed: false }).toArray();
-  console.log(task);
+  //   task = await collection.find({ completed: false }).toArray();
+  //   console.log(task);
 
-  return "done.";
+  //   const updatedResult = await collection.updateOne(
+  //     { _id: ObjectId("63a012fb1f8973f1f77345ec") },
+  //     { $inc: { age: 20 } }
+  //   );
+
+  const updatedResult = await collection.updateMany(
+    { completed: false },
+    { $set: { completed: true } }
+  );
+
+  console.log(updatedResult);
+
+  return updatedResult;
 }
 
 main()
